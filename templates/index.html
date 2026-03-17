@@ -4,23 +4,29 @@
     <title>Fake News Detector</title>
 </head>
 <body>
-    <h1>Fake News Detection</h1>
-    <form method="post">
-        <textarea name="news" rows="10" cols="60" required></textarea><br><br>
-        <button type="submit">Check</button>
-    </form>
 
-    {% if prediction %}
-        <h2>{{ prediction }} ({{ confidence }}%)</h2>
-    {% endif %}
+<h1>Fake News Detection</h1>
+
+<form method="post">
+    <textarea name="news" rows="10" cols="60" required></textarea><br><br>
+    <button type="submit">Check</button>
+</form>
+
+{% if prediction %}
+    <h2>{{ prediction }} ({{ confidence }}%)</h2>
+
+    <form action="/feedback" method="post">
+
+        <input type="hidden" name="prediction_id" value="{{ prediction_id }}">
+
+        <textarea name="comment" placeholder="Your feedback" required></textarea><br><br>
+
+        <input type="number" name="rating" min="1" max="5" required><br><br>
+
+        <button type="submit">Submit Feedback</button>
+
+    </form>
+{% endif %}
+
 </body>
 </html>
-<form action="/feedback" method="post">
-    <input type="hidden" name="prediction_id" value="{{ prediction_id }}">
-
-    <textarea name="comment" placeholder="Your feedback"></textarea>
-
-    <input type="number" name="rating" min="1" max="5">
-
-    <button type="submit">Submit Feedback</button>
-</form>
