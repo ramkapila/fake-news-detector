@@ -7,7 +7,7 @@ import mysql.connector
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="root123",
+    password="admin@001",
     database="fake_news_db"
 )
 
